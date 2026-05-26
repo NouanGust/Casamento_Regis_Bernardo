@@ -1,7 +1,7 @@
 /* Variáveis de Cores e Fontes */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Prata&display=swap');
 :root {
-    --primary-color: #3c2009; /* Tom quente e elegante */
+    --primary-color: #3c2009; 
     --primary-hover: #c08d5d;
     --bg-color: #fdfbf7;
     --text-main: #333333;
@@ -25,7 +25,6 @@ body {
 
 /* Header */
 header {
-    /* Substitua a URL abaixo pela imagem do casal ou tema do casamento */
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('imagens/1000913116_bd8fadd538f52231088f2ddd928f3237-25_05_2026\,\ 15_37_24.png');
     background-size: cover;
     background-repeat: no-repeat;
