@@ -2,12 +2,12 @@
 const API_URL = 'https://presentes-casamento-backend.onrender.com';
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Elementos do Modal
+
     const modal = document.getElementById('modal-aviso');
     const btnFechar = document.querySelector('.close-modal');
     const btnIrLoja = document.getElementById('btn-ir-loja');
 
-    // 1. Carregar o estado atual dos presentes ao abrir a página
+
     fetch(`${API_URL}/presentes`)
         .then(response => response.json())
         .then(data => {
@@ -22,24 +22,21 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => console.error('Erro ao carregar presentes da API:', error));
 
-    // 2. Lógica para ABRIR o modal ao clicar em "Presentear"
     document.querySelectorAll('.card .btn-presentear').forEach(botao => {
         botao.addEventListener('click', (e) => {
-            e.preventDefault(); // Evita que a página recarregue
+            e.preventDefault(); 
             
-            // Pega o link específico do produto no botão
             const linkDaLoja = botao.getAttribute('data-link'); 
             
             if (modal && btnIrLoja) {
-                btnIrLoja.href = linkDaLoja; // Adiciona o link no botão de confirmar do modal
-                modal.style.display = 'flex'; // Exibe o modal
+                btnIrLoja.href = linkDaLoja; 
+                modal.style.display = 'flex'; 
             } else {
                 console.error('Modal ou botão do modal não encontrados no HTML.');
             }
         });
     });
 
-    // 3. Lógica para FECHAR o modal
     const fecharModal = () => {
         if (modal) modal.style.display = 'none';
     };
@@ -47,12 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnFechar) btnFechar.addEventListener('click', fecharModal);
     if (btnIrLoja) btnIrLoja.addEventListener('click', fecharModal);
     
-    // Fecha se clicar fora da caixinha do modal
+
     window.addEventListener('click', (e) => {
         if (e.target === modal) fecharModal();
     });
 
-    // 4. Lógica para CONFIRMAR o presente no Banco de Dados
+
     document.querySelectorAll('.btn-confirmar').forEach(botao => {
         botao.addEventListener('click', async (e) => {
             const card = e.target.closest('.card');
