@@ -1,27 +1,34 @@
 
 const API_URL = 'https://presentes-casamento-backend.onrender.com';
 
-document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
+        const loadingOverlay = document.getElementById('loading-overlay');
+        
+        const modal = document.getElementById('modal-aviso');
+        const btnFechar = document.querySelector('.close-modal');
+        const btnIrLoja = document.getElementById('btn-ir-loja');
 
-    const modal = document.getElementById('modal-aviso');
-    const btnFechar = document.querySelector('.close-modal');
-    const btnIrLoja = document.getElementById('btn-ir-loja');
-
-
-    fetch(`${API_URL}/presentes`)
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(presente => {
-                if (presente.confirmado) {
-                    const card = document.querySelector(`.card[data-id="${presente.id}"]`);
-                    if (card) {
-                        card.classList.add('confirmado');
+        fetch(`${API_URL}/presentes`)
+            .then(response => {
+                if (!response.ok) throw new Error('Falha na resposta do servidor');
+                return response.json();
+            })
+            .then(data => {
+                data.forEach(presente => {
+                    if (presente.confirmado) {
+                        const card = document.querySelector(`.card[data-id="${presente.id}"]`);
+                        if (card) {
+                            card.classList.add('confirmado');
+                        }
                     }
-                }
+                });
+            })
+            .catch(error => {
+                console.error('Erro ao carregar presentes da API:', error);
+            })
+            .finally(() => {
+                loadingOverlay.classList.add('escondido');
             });
-        })
-        .catch(error => console.error('Erro ao carregar presentes da API:', error));
-
     document.querySelectorAll('.card .btn-presentear').forEach(botao => {
         botao.addEventListener('click', (e) => {
             e.preventDefault(); 

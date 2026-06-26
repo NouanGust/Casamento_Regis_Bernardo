@@ -172,31 +172,31 @@ main h2 {
 }
 
 .msg-confirmado {
-    display: none; /* Escondido até a pessoa clicar */
-    color: #4a5d23; /* Verde elegante */
+    display: none; 
+    color: #4a5d23; 
     font-weight: bold;
     font-size: 1.1rem;
     padding: 15px 0;
     text-align: center;
 }
 
-/* --- Classe mágica ativada via JavaScript --- */
+
 .card.confirmado .card-actions {
-    display: none; /* Some com os botões */
+    display: none;
 }
 
 .card.confirmado .msg-confirmado {
-    display: block; /* Mostra a mensagem de sucesso */
+    display: block; 
 }
 
 .card.confirmado img {
-    opacity: 0.5; /* Deixa a imagem "apagada" para mostrar que já foi levado */
+    opacity: 0.5; 
     filter: grayscale(50%);
 }
 
 /* --- Estilos do Modal --- */
 .modal {
-    display: none; /* Escondido por padrão */
+    display: none; 
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -275,4 +275,52 @@ footer a.link-convite {
 footer a.link-convite:hover {
     color: var(--primary-hover);
     border-color: var(--primary-hover);
+}
+
+
+/* Overlay */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color);
+    z-index: 9999; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+
+#loading-overlay.escondido {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(212, 163, 115, 0.3);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: girar 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes girar {
+    to { transform: rotate(360deg); }
+}
+
+.loading-texto h2 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.loading-texto p {
+    color: var(--text-light);
+    max-width: 300px;
 }
